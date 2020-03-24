@@ -1,6 +1,6 @@
 {
     "name": "siganushka/yunpian-notifier",
-    "description": "Siganushka YunPian Notifier Bridge.",
+    "description": "Symfony YunPian Notifier Bridge.",
     "keywords": ["sms", "yunpian", "notifier"],
     "type": "library",
     "license": "MIT",

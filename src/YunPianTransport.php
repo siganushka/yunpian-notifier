@@ -24,6 +24,10 @@ class YunPianTransport extends AbstractTransport
 
     protected function doSend(MessageInterface $message): void
     {
+        if (!$message instanceof SmsMessage) {
+            throw new LogicException(sprintf('The "%s" transport only supports instances of "%s" (instance of "%s" given).', __CLASS__, SmsMessage::class, \get_class($message)));
+        }
+
         $response = $this->client->request('POST', self::ENDPOINT, [
             'body' => [
                 'apikey' => $this->apikey,

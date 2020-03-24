@@ -1,4 +1,4 @@
-# YunPian Notifier Bridge.
+# Symfony YunPian Notifier Bridge.
 
 适用于 [symfony/notifier](https://symfony.com/doc/current/notifier.html) 消息组件的 [云片](https://www.yunpian.com/official/document/sms/zh_cn/domestic_single_send) 短信传输。
 
@@ -32,4 +32,33 @@ framework:
 
 Siganushka\Notifier\Bridge\YunPian\YunPianTransportFactory:
     tags: [ texter.transport_factory ]
+```
+
+### 发送短信
+
+```php
+namespace App\Controller;
+
+use Symfony\Component\Notifier\Exception\TransportException;
+use Symfony\Component\Notifier\Message\SmsMessage;
+use Symfony\Component\Notifier\TexterInterface;
+
+class FooController
+{
+    /**
+     * @Route("/foo")
+     */
+    public function foo(TexterInterface $texter)
+    {
+        $message = new SmsMessage('18611111111', '【签名】测试短信。。。');
+
+        try {
+            $texter->send($message);
+        } catch (TransportException $th) {
+            // 发送失败
+        }
+
+        // ...
+    }
+}
 ```
